@@ -4,22 +4,29 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  
+  const handleBack = () => {
+    const referrer = document.referrer;
+    const isInternal = referrer.includes(window.location.host);
+    if (isInternal) {
+      navigate(-1);
+    } else {
+      navigate("/");
+    }
+  };
+  
   return (
     <React.Fragment>
       <div className="w-full flex justify-between items-center font-semibold">
         <div className="flex items-center gap-2">
           <img
-            onClick={() => {
-              navigate(-1);
-            }}
+            onClick={handleBack}
             className="w-8 bg-black p-2 rounded-2xl cursor-pointer"
             src={assets.arrow_left}
             alt=""
           />
           <img
-            onClick={() => {
-              navigate(-1);
-            }}
+            onClick={handleBack}
             className="w-8 bg-black p-2 rounded-2xl cursor-pointer"
             src={assets.arrow_right}
             alt=""

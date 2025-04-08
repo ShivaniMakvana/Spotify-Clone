@@ -24,7 +24,7 @@ const Player = () => {
             <img className="w-12" src={track.image} alt="" />
             <div>
               <p>{track.name}</p>
-              <p>{track.desc.slice(0, 12)}</p>
+              <p>{track.desc ? (track.desc.length > 12 ? track.desc.slice(0, 12) + "..." : track.desc) : "No description"}</p>
             </div>
           </div>
           <div className="flex flex-col items-center gap-1 m-auto">
@@ -69,7 +69,8 @@ const Player = () => {
             </div>
             <div className="flex  items-center gap-5">
               <p>
-                {time.currentTime.minute}:{time.currentTime.second}
+              {String(time.currentTime.minute).padStart(2, '0')}:
+              {String(time.currentTime.second).padStart(2, '0')}
               </p>
               <div
                 ref={seekBg}
@@ -82,7 +83,8 @@ const Player = () => {
                 />
               </div>
               <p>
-                {time.totalTime.minute}:{time.totalTime.second}
+              {String(time.totalTime.minute).padStart(2, '0')}:
+              {String(time.totalTime.second).padStart(2, '0')}
               </p>
             </div>
           </div>
